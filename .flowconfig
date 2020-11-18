@@ -1,0 +1,21 @@
+[ignore]
+.*/node_modules/.*
+.*/build/.*
+.*/flow-typed/.*
+.*/src/serviceWorker\\.js
+.*/src/index\\.js
+.*\\.test\\.js
+config-overrides.js
+jsconfig.json
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+; all=true
+; suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+[strict]
