@@ -1,21 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch, Redirect, useLocation } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import JustDoIt from 'components/pages/JustDoIt/JustDoIt';
+import NotFound from 'components/pages/NotFound/NotFound';
+import justDoItTheme from 'utils/themeConfig/themes/justDoItTheme';
+import GlobalStyle from 'utils/themeConfig/globalStyle';
 
 function App() {
+    const { pathname } = useLocation();
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Switch>
+            <Redirect from="/:url*(/+)" to={pathname.slice(0, -1)} />
+            <Route exact path="/" component={JustDoIt} />
+            <Route exact path="*" component={NotFound} />
+        </Switch>
     );
 }
 
-export default App;
+export default function AppContainer() {
+    return (
+        <ThemeProvider theme={justDoItTheme}>
+            <GlobalStyle />
+            <Router>
+                <App />
+            </Router>
+        </ThemeProvider>
+    );
+}
