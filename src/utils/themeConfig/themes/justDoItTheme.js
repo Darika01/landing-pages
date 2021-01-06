@@ -8,10 +8,6 @@ const justDoItTheme = {
     warningColor: 'rgba(255, 160, 0, 1)',
     infoColor: 'rgba(25, 118, 210, 1)',
     successColor: 'rgba(67, 160, 71, 1)',
-    common: {
-        whiteColor: 'rgba(255, 255, 255, 1)',
-        blackColor: 'rgba(0, 0, 0, 1)'
-    },
     text: {
         primaryColor: 'rgba(59, 59, 59, 1)',
         secondaryColor: 'rgba(112, 112, 112, 1)',

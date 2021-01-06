@@ -1,55 +1,29 @@
 //@flow
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import API from 'api';
+import { Content, Container, BgrImg, Title, SubTitle, TitleContainer } from './styles';
 import bgrImg from 'assets/images/justDoIt/bgr.jpg';
-import { TitleH2, TextBody2 } from 'shared/styledComponents';
-import breakpoints from 'utils/themeConfig/breakpoints';
+import withErrorHandler from 'shared/withErrorHandler/withErrorHandler';
 
-const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
+const SecondSection = () => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
-const Container = styled.div`
-    height: 60rem;
-    position: relative;
-    z-index: 5;
+    const getData = () => {
+        API.get('list.json', {
+            cancelToken: source.token
+        }).then(res => {
+            console.log(res.data);
+        });
+    };
 
-    background-color: ${props => props.theme.secondaryColor};
-`;
-const TitleContainer = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100%;
-`;
-const Title = styled(TitleH2)`
-    color: ${props => props.theme.common.whiteColor};
-    margin-bottom: 2rem;
-`;
-const SubTitle = styled(TextBody2)`
-    color: ${props => props.theme.common.whiteColor};
-`;
-const BgrImg = styled.div`
-    position: absolute;
-    z-index: -1;
-    background-image: url(${props => props.bgrImg});
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: 0.4;
-    width: 100%;
-    height: 100%;
-    opacity: 0.6;
-    filter: blur(0.14rem);
-`;
+    useEffect(() => {
+        getData();
+        return () => source.cancel('Operation canceled by the user.');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-export default function SecondSection() {
     return (
         <Content>
             <Container>
@@ -58,8 +32,8 @@ export default function SecondSection() {
                     <Title>Occaecat elit quis quis</Title>
                     <SubTitle>Ipsum adipisicing deserunt fugiat commodo Lorem esse esse</SubTitle>
                 </TitleContainer>
-                {/* <BgrImg src={bgrImg} alt="bgr" /> */}
             </Container>
         </Content>
     );
-}
+};
+export default withErrorHandler(SecondSection, API);

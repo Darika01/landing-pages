@@ -23,9 +23,16 @@ const GlobalStyle = createGlobalStyle`
 	},
 	body {
 		background: #FFFFFF;
-		* {
-			font-family: 'Montserrat';
-		}
+		* 	{
+				font-family: 'Montserrat';
+				@media (max-width: ${props => props.theme.breakpoints.sm}) {
+					overflow: ${props => (props.isScrollBlock ? 'hidden' : 'unset')};
+				}
+		};
+		a 	{
+			color: unset;
+			text-decoration: none;
+		};
 	}
 	
 `;

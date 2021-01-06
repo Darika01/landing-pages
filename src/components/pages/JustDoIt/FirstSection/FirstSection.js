@@ -1,83 +1,13 @@
 //@flow
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
-import { TitleH2, TextH3, TextBody1, TextBody2, Layout } from 'shared/styledComponents';
-import { HappyHeartEyes } from '@styled-icons/boxicons-regular';
-import setIconSize from 'utils/themeConfig/setIconSize';
+import { TextBody1 } from 'shared/styledComponents';
 import face1 from 'assets/images/justDoIt/face1.png';
 import face2 from 'assets/images/justDoIt/face2.png';
 import CenteredContainer from '../shared/CenteredContainer/CenteredContainer';
+import { Content, Container, Title, LikeIcon, DateText, FaceContainer, FaceImg, TextName } from './styles';
 
-const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-const Container = styled(Layout)`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    & > *:not(:last-child) {
-        margin-bottom: 2.4rem;
-    }
-`;
-
-const LikeIcon = styled(HappyHeartEyes)`
-    ${setIconSize(4.6)};
-    color: ${props => props.theme.text.primaryColor};
-`;
-const Title = styled(TitleH2)`
-    color: ${props => props.theme.text.primaryColor};
-    z-index: 2;
-`;
-
-const DateText = styled(TextH3)`
-    text-transform: none;
-    color: ${props => props.theme.common.whiteColor};
-    & > span {
-        width: 15rem;
-        margin: 0 auto;
-        text-align: left;
-        display: inline-block;
-        padding-left: 1rem;
-    }
-`;
-const FaceContainer = styled.div`
-    margin-top: 4.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    @media (max-width: ${props => props.theme.breakpoints.md}) {
-        flex-direction: column;
-    }
-    & > div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    & > div:first-child {
-        margin-right: 2.4rem;
-        @media (max-width: ${props => props.theme.breakpoints.md}) {
-            margin-right: 0;
-            margin-bottom: 8rem;
-        }
-    }
-`;
-
-const FaceImg = styled.img`
-    width: 20rem;
-    height: auto;
-`;
-
-const TextName = styled(TextBody2)`
-    text-transform: uppercase;
-    font-weight: 500;
-    margin: 4rem 0 2.2rem;
-`;
-
-export default function SectionFirst() {
+export default function FirstSection() {
     const [Time, setTime] = useState({ date: moment().format('MMMM Do YYYY'), time: moment().format('HH:mm:ss') });
 
     useEffect(() => {

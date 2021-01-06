@@ -1,5 +1,5 @@
 const rootFonts = {
-    xs: '9px',
+    xs: '10px',
     sm: '10px',
     md: '10px',
     lg: '10px',
